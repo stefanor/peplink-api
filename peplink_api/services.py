@@ -67,12 +67,15 @@ class PepLinkRawService(HTTPServiceClient):
             "response"
         ]
 
-    def bandwidth_usage(
+    def client_bandwidth_usage(
         self,
         from_: datetime.datetime,
         to: Optional[datetime.datetime] = None,
         period="daily",
     ):
+        """
+        Counters appear to be updated ~1/minute
+        """
         if to is None:
             to = datetime.datetime.now()
         return self.get(

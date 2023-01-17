@@ -60,10 +60,11 @@ class FunctionalIntegrationTest(TestCase):
     def test_client_status(self):
         self.assertIn("list", self.service.client_status())
 
-    def test_bandwidth_usage(self):
+    def test_client_bandwidth_usage(self):
         month_start = datetime.datetime.now().replace(
             day=1, hour=0, minute=0, second=0, microsecond=0
         )
         self.assertIn(
-            "monthly", self.service.bandwidth_usage(period="monthly", from_=month_start)
+            "monthly",
+            self.service.client_bandwidth_usage(period="monthly", from_=month_start),
         )
