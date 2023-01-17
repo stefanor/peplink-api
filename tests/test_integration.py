@@ -68,3 +68,6 @@ class FunctionalIntegrationTest(TestCase):
             "monthly",
             self.service.client_bandwidth_usage(period="monthly", from_=month_start),
         )
+
+    def test_traffic_status(self):
+        self.assertIn("bandwidth", self.service.traffic_status())

@@ -87,6 +87,14 @@ class PepLinkRawService(HTTPServiceClient):
             },
         ).json()["response"]
 
+    def traffic_status(self):
+        return self.get(
+            "/api/status.traffic",
+            params={
+                "fetchDelay": 1,
+            },
+        ).json()["response"]
+
 
 class PepLinkClientService(PepLinkRawService):
     """API client that supports Client ID & Client Secret authentication"""
