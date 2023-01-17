@@ -62,10 +62,11 @@ class PepLinkRawService(HTTPServiceClient):
             params["id"] = [str(conn_ids)]
         return self.get("/api/status.wan.connection", params=params).json()["response"]
 
-    def client_status(self, weight="normal"):
-        return self.get("/api/status.client", params={"outputWeight": weight}).json()[
-            "response"
-        ]
+    def client_status(self, active_only=False, weight="normal"):
+        return self.get(
+            "/api/status.client",
+            params={"outputWeight": weight, "activeOnly": active_only},
+        ).json()["response"]
 
     def client_bandwidth_usage(
         self,
