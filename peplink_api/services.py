@@ -131,3 +131,8 @@ class PepLinkClientService(PepLinkRawService):
         query = urllib.parse.urlencode(querydict)
         request_params["url"] = urllib.parse.urlunparse(url._replace(query=query))
         return super().pre_send(request_params)
+
+    def is_acceptable(self, response, request_params) -> bool:
+        if response.json()["stat"] == "fail" and response.json().get("code") == 401:
+            self.access_token = None  # Expire the token
+        return super().is_acceptable(response, request_params)
