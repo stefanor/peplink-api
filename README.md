@@ -10,7 +10,7 @@ personal projects. Contributions of more are welcome!
 
 Currently tested on:
 
-* PepLink MAX BR1 5G
+* PepLink MAX BR1 5G firmware 8.3.0.
 
 ## Development
 
