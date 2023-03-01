@@ -92,6 +92,9 @@ class PepLinkRawService(HTTPServiceClient):
             },
         ).json()["response"]
 
+    def time_config(self):
+        return self.get("/api/config.time").json()["response"]
+
     def traffic_status(self):
         return self.get(
             "/api/status.traffic",

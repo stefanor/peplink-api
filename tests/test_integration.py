@@ -69,5 +69,18 @@ class FunctionalIntegrationTest(TestCase):
             self.service.client_bandwidth_usage(period="monthly", from_=month_start),
         )
 
+    def test_time_config(self):
+        time = self.service.time_config()
+        self.assertIn("timeZone", time)
+        self.assertIn("syncSource", time)
+        self.assertIn("timeServer", time)
+        self.assertIn("defaultTimeServer", time)
+        self.assertIn("timeZoneList", time)
+        self.assertIn("timeDst", time)
+        for zone in time["timeZoneList"]:
+            self.assertIn("name", zone)
+            self.assertIn("value", zone)
+            self.assertIn("offset", zone)
+
     def test_traffic_status(self):
         self.assertIn("bandwidth", self.service.traffic_status())
