@@ -133,6 +133,7 @@ class PepLinkClientService(PepLinkRawService):
         querydict["accessToken"] = self.access_token
         query = urllib.parse.urlencode(querydict)
         request_params["url"] = urllib.parse.urlunparse(url._replace(query=query))
+        request_params["timeout"] = 5
         return super().pre_send(request_params)
 
     def is_acceptable(self, response, request_params) -> bool:
